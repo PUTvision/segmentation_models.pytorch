@@ -26,7 +26,7 @@ class FPNBlock(nn.Module):
         self.skip_conv = nn.Conv2d(skip_channels, pyramid_channels, kernel_size=1)
 
     def forward(self, x, skip=None):
-        x = F.interpolate(x, scale_factor=2, mode="nearest")
+        x = F.interpolate(x, scale_factor=2, mode="bilinear")
         skip = self.skip_conv(skip)
         x = x + skip
         return x
